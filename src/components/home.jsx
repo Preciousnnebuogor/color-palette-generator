@@ -35,11 +35,11 @@ function copyToClipboard(color) {
         <button onClick={generateColors}>Generate Palette</button>
 
         <div className="colors">
-          {color.map((color, index) => (
+          {color.map((colorMap, index) => (
             <div className="eachcolor" key={index}>
               <div
                 style={{
-                  backgroundColor: color,
+                  backgroundColor: colorMap,
                   width: "100px",
                   height: "100px",
                   borderTopLeftRadius: "10px",
@@ -50,15 +50,16 @@ function copyToClipboard(color) {
                 {/* <p className="param">{color}</p> */}
                 
                 <FaCopy
-                  onClick={() => copyToClipboard(color)}
+                  onClick={() => copyToClipboard(colorMap)}
                   style={{
                     cursor: "pointer",
-                    fontWeight: copy === color ? "bold" : "normal",
-                    color: copy === color ? "green" : "#333",
+                    fontWeight: copy === colorMap ? "bold" : "normal",
+                    color: copy === colorMap ? "green" : "#333",
                   }}
                   size={"15px"}
                 />
-                {copy === color ? "Copied!" : color}
+                {copy === colorMap ? "Copied!" : colorMap}
+                {/* {colorMap} */}
                 
               </div>
             </div>
