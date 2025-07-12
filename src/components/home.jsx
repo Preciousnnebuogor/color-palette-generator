@@ -15,6 +15,18 @@ export default function Home() {
     setColor(newColor);
   }
 
+//   function handleCopy(newColor) {
+//     navigator.clipboard.writeText(newColor);
+//     setCopy(newColor);
+//   }
+
+function copyToClipboard(color) {
+  navigator.clipboard.writeText(color); // copies color code to clipboard
+  setCopy(color); // update state to show feedback
+  setTimeout(() => setCopy(null), 1000); // reset after 1 sec
+}
+  
+
   return (
     <div className="container">
       <div className="content">
@@ -35,8 +47,19 @@ export default function Home() {
                 }}
               ></div>
               <div className="paramIcon">
-                <p className="param">{color}</p>
-                <FaCopy size={"15px"} />
+                {/* <p className="param">{color}</p> */}
+                
+                <FaCopy
+                  onClick={() => copyToClipboard(color)}
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: copy === color ? "bold" : "normal",
+                    color: copy === color ? "green" : "#333",
+                  }}
+                  size={"15px"}
+                />
+                {copy === color ? "Copied!" : color}
+                
               </div>
             </div>
           ))}
