@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCopy } from "react-icons/fa6";
 export default function Home() {
   const [color, setColor] = useState([]);
   const [copy, setCopy] = useState();
+
+
+  useEffect(() => {
+    generateColors(); // runs once when component mounts
+  }, []);
+  
 
   function generateColors() {
     const newColor = [];
@@ -13,6 +19,7 @@ export default function Home() {
           newColor.push(randomColors)
     }
     setColor(newColor);
+    
   }
 
 //   function handleCopy(newColor) {
@@ -25,6 +32,7 @@ function copyToClipboard(color) {
   setCopy(color); // update state to show feedback
   setTimeout(() => setCopy(null), 1000); // reset after 1 sec
 }
+
   
 
   return (
