@@ -1,11 +1,48 @@
+import { useState } from "react";
 import { FaCopy } from "react-icons/fa6";
 export default function Home() {
+  const [color, setColor] = useState([]);
+  const [copy, setCopy] = useState();
+
+  function generateColors() {
+    const newColor = [];
+    for (let i = 0; i < 5; i++) {
+      const randomColors =
+        "#" + Math.floor(Math.random() * 16777215)
+          .toString(16).padStart(6, "0");
+          newColor.push(randomColors)
+    }
+    setColor(newColor);
+  }
+
   return (
     <div className="container">
       <div className="content">
         <p className="con-p">Color Palette Generator</p>
-        <button>Generate Palette</button>
+
+        <button onClick={generateColors}>Generate Palette</button>
+
         <div className="colors">
+          {color.map((color, index) => (
+            <div className="eachcolor" key={index}>
+              <div
+                style={{
+                  backgroundColor: color,
+                  width: "100px",
+                  height: "100px",
+                  borderTopLeftRadius: "10px",
+                  borderTopRightRadius: "10px",
+                }}
+              ></div>
+              <div className="paramIcon">
+                <p className="param">{color}</p>
+                <FaCopy size={"15px"} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* <div className="colors">
           <div className="eachcolor">
             <div className="color1"></div>
             <div className="paramIcon">
@@ -44,26 +81,56 @@ export default function Home() {
               <p className="param">#800080</p>
               <FaCopy size={"15px"} />
             </div>
-          </div>
+          </div> */}
 
-          {/* <div className="eachcolor">
+        {/* <div className="eachcolor">
             <div className="color6"></div>
             <div className="paramIcon">
               <p className="param">#800080</p>
               <FaCopy size={"15px"} />
             </div>
-          </div> */}
+          </div> 
 
+          <div className="eachcolor">
+            <div className="color7"></div>
+            <div className="paramIcon">
+              <p className="param">#800080</p>
+              <FaCopy size={"15px"} />
+            </div>
+          </div> 
+
+          <div className="eachcolor">
+            <div className="color8"></div>
+            <div className="paramIcon">
+              <p className="param">#800080</p>
+              <FaCopy size={"15px"} />
+            </div>
+          </div> 
+
+          <div className="eachcolor">
+            <div className="color9"></div>
+            <div className="paramIcon">
+              <p className="param">#800080</p>
+              <FaCopy size={"15px"} />
+            </div>
+          </div> 
+
+          <div className="eachcolor">
+            <div className="color10"></div>
+            <div className="paramIcon">
+              <p className="param">#800080</p>
+              <FaCopy size={"15px"} />
+            </div>
+          </div> 
           
-          {/* 
-            <div className="color7">hello</div>
-            <div className="color8">hello</div>
-            <div className="color9">hello</div>
-            <div className="color10">hello</div>
+          
+          */}
+
+        {/* 
+           
             <div className="color12">hello</div>
             <div className="color13">hello</div>
             <div className="color14">hello</div> */}
-        </div>
       </div>
     </div>
   );
